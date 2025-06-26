@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ryan.log</title>
+  <link rel="stylesheet" href="log.css">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+
+<body>
+  <b>pi2chen.world/log</b>
+  <br>
+  <small>Last updated <script>document.write(new Date().toLocaleDateString('en-CA'))</script></small>
+  <br><br>
+
+  <table>
+    <thead>
+      <tr class="firstrow">
+        <th>In</th>
+        <th>Out</th>
+        <th>Location</th>
+        <th>Purpose of Visit</th>
+      </tr>
+    </thead>
+    <tbody id="log-body">
+      <!-- JS will insert rows here -->
+    </tbody>
+  </table>
+
+  <script>
+    const travelLog = [
+      { in: '2025-06-20', out: '2025-06-20', location: 'San Francisco, California', purpose: 'For a day trip w/ Andrew and Dave' },
+      { in: '2025-06-19', out: '2025-06-19', location: 'Pinnacles NP, California', purpose: 'For a day trip w/ Jacob' },
+      { in: '2025-06-14', out: '2025-06-14', location: 'San Francisco, California', purpose: 'For the very first Homeroom meetup' },
+      { in: '2025-06-06', out: '2025-06-08', location: 'Yosemite NP, California', purpose: 'For a boys\' trip w/ Harvey and Freddy' },
+      { in: '2025-05-25', out: '2025-05-25', location: 'Santa Cruz, California', purpose: 'For a quick Sunday getaway' },
+      { in: '2025-05-24', out: '2025-05-24', location: 'Sequoia NP, California', purpose: 'For hiking the Congress Trail' },
+      { in: '2025-04-23', out: '2025-04-23', location: 'San Antonio, Texas', purpose: 'For a day trip w/ LG Team' },
+      { in: '2025-04-12', out: '2025-04-13', location: 'College Station, Texas', purpose: 'For Sunny\'s Ring Dunk' },
+      { in: '2025-03-24', out: '2025-05-10', location: 'Austin, Texas', purpose: 'For school (UT Austin)' },
+    //   { in: '2025-03-23', out: '2025-03-24', location: 'Atlanta, Georgia', purpose: 'Layover (short)' },
+    //   { in: '2025-03-23', out: '2025-03-23', location: 'Santiago, Chile', purpose: 'Layover (short)' },
+      { in: '2025-03-22', out: '2025-03-23', location: 'El Calafate, Argentina', purpose: 'For a base for Los Glaciares' },
+      { in: '2025-03-19', out: '2025-03-22', location: 'Los Glaciares NP, Argentina', purpose: 'For El Chaltén and Perito Moreno' },
+      { in: '2025-03-16', out: '2025-03-18', location: 'Torres del Paine NP, Chile', purpose: 'For hiking the W Trek' },
+      { in: '2025-03-15', out: '2025-03-16', location: 'Puerto Natales, Chile', purpose: 'For a base for Torres del Paine' },
+      { in: '2025-03-14', out: '2025-03-15', location: 'Santiago, Chile', purpose: 'For seeing the city as a long layover' },
+      { in: '2025-03-13', out: '2025-03-13', location: 'Atlanta, Georgia', purpose: 'For a layover (short)' },
+      { in: '2024-12-21', out: '2024-12-23', location: 'Big Bend NP, Texas', purpose: 'For my family\'s idea of a holiday getaway' },
+      { in: '2024-11-14', out: '2024-11-15', location: 'Dallas, Texas', purpose: 'For a tech conference' },
+    //   { in: '2024-10-27', out: '2024-10-28', location: 'Cleveland, Ohio', purpose: 'Visiting Jojo @ Case' },
+      { in: '2024-10-25', out: '2024-10-27', location: 'Ann Arbor, Michigan', purpose: 'For visiting Jenny @ UMich' },
+      { in: '2024-10-24', out: '2024-10-25', location: 'Cleveland, Ohio', purpose: 'For visiting Jojo @ Case' },
+    //   { in: '2024-05-31', out: '2024-05-31', location: 'San Francisco, California', purpose: 'Layover (short)' },
+    //   { in: '2024-05-27', out: '2024-05-30', location: 'Guangdong, China', purpose: 'China trip' },
+    //   { in: '2024-05-24', out: '2024-05-27', location: 'Chongqing, China', purpose: 'China trip' },
+      { in: '2024-05-23', out: '2024-05-24', location: 'Chengdu, China', purpose: 'For seeing the pandas! (and family, I guess)' },
+    //   { in: '2024-05-20', out: '2024-05-23', location: 'Garze Tibetan Autonomous Prefecture, China', purpose: 'China trip' },
+      { in: '2024-05-18', out: '2024-05-20', location: 'Chongqing, China', purpose: 'For seeing my 外公 and eating hotpot' },
+    //   { in: '2024-05-16', out: '2024-05-18', location: 'Anhui Province, China', purpose: 'China trip' },
+    //   { in: '2024-05-14', out: '2024-05-16', location: 'Suzhou, China', purpose: 'China trip' },
+      { in: '2024-05-12', out: '2024-05-14', location: 'Shanghai, China', purpose: 'For seeing what all the hype is about' },
+      { in: '2024-05-10', out: '2024-05-12', location: 'Gangwon-do, South Korea', purpose: 'For a countryside change of pace and Seoraksan NP' },
+      { in: '2024-05-07', out: '2024-05-10', location: 'Seoul, South Korea', purpose: 'For visiting Sunny @ SNU' },
+      { in: '2024-05-05', out: '2024-05-07', location: 'Hong Kong, China', purpose: 'For seeing the city as a long layover' },
+      { in: '2024-01-15', out: '2024-05-03', location: 'Austin, Texas', purpose: 'For school (UT Austin)' },
+    //   { in: '2024-01-13', out: '2024-01-13', location: 'San Francisco, California', purpose: 'Layover' },
+    //   { in: '2024-01-13', out: '2024-01-13', location: 'Taipei, Taiwan', purpose: 'Layover' },
+    //   { in: '2024-01-13', out: '2024-01-13', location: 'Ho Chi Minh City, Vietnam', purpose: 'Layover' },
+    //   { in: '2024-01-12', out: '2024-01-12', location: 'Ba Na Hills, Vietnam', purpose: 'Day trip from Da Nang' },
+      { in: '2024-01-11', out: '2024-01-11', location: 'Hoi An, Vietnam', purpose: 'For a day trip from Da Nang' },
+    //   { in: '2024-01-03', out: '2024-01-13', location: 'Da Nang, Vietnam', purpose: 'Vietnam trip' },
+      { in: '2024-01-03', out: '2024-01-03', location: 'Ho Chi Minh City, Vietnam', purpose: 'For a layover (short)' },
+      { in: '2024-01-03', out: '2024-01-03', location: 'Taipei, Taiwan', purpose: 'For a layover (short)' },
+      { in: '2024-01-01', out: '2024-01-01', location: 'San Francisco, California', purpose: 'For a layover (short)' },
+    ];
+
+    const tbody = document.getElementById('log-body');
+
+    travelLog.forEach(entry => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${entry.in}</td>
+        <td>${entry.out}</td>
+        <td>${entry.location}</td>
+        <td>${entry.purpose}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
